@@ -17,7 +17,7 @@ type (
 	metadata struct {
 		Code         int    `json:"code"`
 		ErrorType    string `json:"error_type,omitempty"`
-		ErrorMessage string `json:"error_message,omitempty"`
+		ErrorMessage string `json:"error_msg,omitempty"`
 	}
 )
 
