@@ -7,8 +7,8 @@ import (
 )
 
 type (
-	// envelope contains metadata and optional data for a response object.
-	envelope struct {
+	// Envelope contains metadata and optional data for a response object.
+	Envelope struct {
 		Code         int         `json:"code"`
 		ErrorType    string      `json:"error_type,omitempty"`
 		ErrorMessage string      `json:"error_msg,omitempty"`
@@ -37,7 +37,7 @@ func renderString(w http.ResponseWriter, status int, msg string) error {
 }
 
 func WriteSuccess(w http.ResponseWriter, data interface{}, status int) error {
-	env := &envelope{
+	env := &Envelope{
 		Code: status,
 		Data: data,
 	}
@@ -45,7 +45,7 @@ func WriteSuccess(w http.ResponseWriter, data interface{}, status int) error {
 }
 
 func WriteError(w http.ResponseWriter, e HTTPError) error {
-	env := &envelope{
+	env := &Envelope{
 		Code:         e.Status,
 		ErrorMessage: e.Message,
 	}
