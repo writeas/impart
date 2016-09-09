@@ -8,6 +8,11 @@ import (
 
 type (
 	// Envelope contains metadata and optional data for a response object.
+	// Responses will always contain a status code and either:
+	// - response Data on a 2xx response, or
+	// - an ErrorMessage on non-2xx responses
+	//
+	// ErrorType is not currently used.
 	Envelope struct {
 		Code         int         `json:"code"`
 		ErrorType    string      `json:"error_type,omitempty"`
@@ -36,6 +41,8 @@ func renderString(w http.ResponseWriter, status int, msg string) error {
 	return writeBody(w, []byte(msg), status, "text/plain")
 }
 
+// WriteError writes the successful data and metadata to the ResponseWriter as
+// JSON.
 func WriteSuccess(w http.ResponseWriter, data interface{}, status int) error {
 	env := &Envelope{
 		Code: status,
@@ -44,6 +51,7 @@ func WriteSuccess(w http.ResponseWriter, data interface{}, status int) error {
 	return renderJSON(w, env, status)
 }
 
+// WriteError writes the error to the ResponseWriter as JSON.
 func WriteError(w http.ResponseWriter, e HTTPError) error {
 	env := &Envelope{
 		Code:         e.Status,
