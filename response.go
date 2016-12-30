@@ -41,7 +41,7 @@ func renderString(w http.ResponseWriter, status int, msg string) error {
 	return writeBody(w, []byte(msg), status, "text/plain")
 }
 
-// WriteError writes the successful data and metadata to the ResponseWriter as
+// WriteSuccess writes the successful data and metadata to the ResponseWriter as
 // JSON.
 func WriteSuccess(w http.ResponseWriter, data interface{}, status int) error {
 	env := &Envelope{
