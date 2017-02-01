@@ -59,3 +59,10 @@ func WriteError(w http.ResponseWriter, e HTTPError) error {
 	}
 	return renderJSON(w, env, e.Status)
 }
+
+// WriteRedirect sends a redirect
+func WriteRedirect(w http.ResponseWriter, e HTTPError) int {
+	w.Header().Set("Location", e.Message)
+	w.WriteHeader(e.Status)
+	return e.Status
+}
