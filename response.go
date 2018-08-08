@@ -29,6 +29,14 @@ func writeBody(w http.ResponseWriter, body []byte, status int, contentType strin
 	return err
 }
 
+func RenderActivityJSON(w http.ResponseWriter, value interface{}, status int) error {
+	body, err := json.Marshal(value)
+	if err != nil {
+		return err
+	}
+	return writeBody(w, body, status, "application/activity+json")
+}
+
 func renderJSON(w http.ResponseWriter, value interface{}, status int) error {
 	body, err := json.Marshal(value)
 	if err != nil {
