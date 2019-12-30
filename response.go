@@ -19,6 +19,10 @@ type (
 		ErrorMessage string      `json:"error_msg,omitempty"`
 		Data         interface{} `json:"data,omitempty"`
 	}
+
+	PlainErrEnvelope struct {
+		Error string `json:"error"`
+	}
 )
 
 func writeBody(w http.ResponseWriter, body []byte, status int, contentType string) error {
@@ -68,6 +72,18 @@ func WriteError(w http.ResponseWriter, e HTTPError) error {
 	env := &Envelope{
 		Code:         status,
 		ErrorMessage: e.Message,
+	}
+	return renderJSON(w, env, status)
+}
+
+// WriteOAuthError writes the error to the ResponseWriter as JSON.
+func WriteOAuthError(w http.ResponseWriter, e HTTPError) error {
+	status := e.Status
+	if status == 0 {
+		status = 500
+	}
+	env := &PlainErrEnvelope{
+		Error: e.Message,
 	}
 	return renderJSON(w, env, status)
 }
