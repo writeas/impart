@@ -61,11 +61,15 @@ func WriteSuccess(w http.ResponseWriter, data interface{}, status int) error {
 
 // WriteError writes the error to the ResponseWriter as JSON.
 func WriteError(w http.ResponseWriter, e HTTPError) error {
+	status := e.Status
+	if status == 0 {
+		status = 500
+	}
 	env := &Envelope{
-		Code:         e.Status,
+		Code:         status,
 		ErrorMessage: e.Message,
 	}
-	return renderJSON(w, env, e.Status)
+	return renderJSON(w, env, status)
 }
 
 // WriteRedirect sends a redirect
