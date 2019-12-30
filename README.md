@@ -1,7 +1,7 @@
 impart
 ======
 
-![MIT license](https://img.shields.io/github/license/writeas/impart.svg) [![#writeas on freenode](https://img.shields.io/badge/freenode-%23writeas-blue.svg)](http://webchat.freenode.net/?channels=writeas) [![Public Slack discussion](http://slack.write.as/badge.svg)](http://slack.write.as/)
+![MIT license](https://img.shields.io/github/license/writeas/impart.svg) [![#writeas on freenode](https://img.shields.io/badge/freenode-%23writeas-blue.svg)](http://webchat.freenode.net/?channels=writeas) [![Discuss on our forum](https://img.shields.io/discourse/https/discuss.write.as/users.svg?label=forums)](https://discuss.write.as/c/development)
 
 **impart** is a library for the final layer between the API and the consumer. It's used in the latest [Write.as](https://write.as) and [HTMLhouse](https://html.house) APIs.
 
